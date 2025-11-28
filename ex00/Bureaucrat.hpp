@@ -6,7 +6,7 @@
 /*   By: yyaniv <yyaniv@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/27 12:46:49 by yyaniv            #+#    #+#             */
-/*   Updated: 2025/11/27 15:01:16 by yyaniv           ###   ########.fr       */
+/*   Updated: 2025/11/28 16:38:01 by yyaniv           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@
 class Bureaucrat 
 {
     private:
-        static const int    maxGrade = 150;
-        static const int    minGrade = 1;
-        const std::string   name;
-        int                 grade;
+        static const int    _maxGrade = 1;
+        static const int    _minGrade = 150;
+        const std::string   _name;
+        int                 _grade;
         Bureaucrat();
     
     public:
@@ -30,9 +30,9 @@ class Bureaucrat
         Bureaucrat(const Bureaucrat &other);
         ~Bureaucrat();
 
-        Bureaucrat  &operator=(const Bureaucrat &other);
+        Bureaucrat          &operator=(const Bureaucrat &other);
         const std::string   &getName() const;
-        int                 getgrade() const;
+        int                 getGrade() const;
         void                inceaseGrade();
         void                decreaseGrade();
     

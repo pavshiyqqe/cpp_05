@@ -6,7 +6,7 @@
 /*   By: yyaniv <yyaniv@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/27 12:47:13 by yyaniv            #+#    #+#             */
-/*   Updated: 2025/11/27 15:22:45 by yyaniv           ###   ########.fr       */
+/*   Updated: 2025/11/28 16:06:59 by yyaniv           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,71 @@
 
 const char      *Bureaucrat::GradeTooHighException::what() const throw()
 {
+    return ("Grade above max value");
+}
+
+const char      *Bureaucrat::GradeTooLowException::what() const throw()
+{
+    return ("Grade below min value");
+}
+
+
+Bureaucrat::Bureaucrat()
+{
+
+}
+
+Bureaucrat::~Bureaucrat()
+{
+
+}
+
+Bureaucrat::Bureaucrat(const std::string &name, int grade) : _name(name)
+{
+    if (grade < 1)
+        throw GradeTooHighException();
+    else if (grade > 150)
+        throw GradeTooLowException();
+    this->_grade = grade;
+}
+
+Bureaucrat::Bureaucrat(const Bureaucrat &other) : _name(other._name), _grade(other._grade)
+{
     
-};
+}
+
+Bureaucrat  &Bureaucrat::operator=(const Bureaucrat &other)
+{
+    this->_grade = other._grade;
+    return (*this);
+}
+
+const std::string   &Bureaucrat::getName() const
+{
+    return (this->_name);
+}
+
+int                 Bureaucrat::getGrade() const
+{
+    return (this->_grade);
+}
+
+void                Bureaucrat::inceaseGrade()
+{
+    if (this->_grade == Bureaucrat::_maxGrade)
+        throw GradeTooHighException();
+    this->_grade--;
+}
+
+void                Bureaucrat::decreaseGrade()
+{
+    if (this->_grade == Bureaucrat::_minGrade)
+        throw GradeTooLowException();
+    this->_grade++;
+}
+
+std::ostream    &operator<<(std::ostream &out, Bureaucrat &b)
+{
+    out << b.getName() << ", bureaucrat grade's " << b.getGrade();
+    return (out);
+}
