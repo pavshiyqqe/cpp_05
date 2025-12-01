@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: yyaniv <yyaniv@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/26 09:55:51 by yyaniv            #+#    #+#             */
-/*   Updated: 2025/11/28 16:30:15 by yyaniv           ###   ########.fr       */
+/*   Created: 2025/11/29 20:20:17 by yyaniv            #+#    #+#             */
+/*   Updated: 2025/12/01 14:41:30 by yyaniv           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,55 +14,74 @@
 
 int main()
 {
-	Bureaucrat	Odin("Odin", 1);
-	Bureaucrat	Loki("Loki", 150);
-
-	std::cout << "Just created two bureaucrat gods!" << std::endl;
-	std::cout << Odin << std::endl;
-	std::cout << Loki << std::endl;
-
-	std::cout << "\nLet's try creating Thor with grade 0" << std::endl;
-	/* GradeTooHighException */
-	try
-	{
-		Bureaucrat Thor("Thor", 0);
-	}
-	catch (std::exception& e)
-	{
-		std::cout << "Cannot create Thor!" << std::endl;
-		std::cout << "Exception: " << e.what() << std::endl;
-	}
-	std::cout << "\nLet's try creating John with grade 151" << std::endl;
-	/* GradeTooLowException */
-	try
-	{
-		Bureaucrat John("Thor", 151);
-	}
-	catch (std::exception& e)
-	{
-		std::cout << "Cannot create John!" << std::endl;
-		std::cout << "Exception: " << e.what() << std::endl;
-	}
-	std::cout << "\nLet's try promoting Odin!" << std::endl;
-	/* Increment throwing exception */
-	try
-	{
-		Odin.inceaseGrade();
-	}
-	catch (std::exception& e)
-	{
-		std::cout << "Cannot increment the grade of Odin!" << std::endl;
-		std::cout << "Exception: " << e.what() << std::endl;
-	}
-	std::cout << "\nLet's try demoting Loki!" << std::endl;
-	/* Decrement throwing exception */
-	try
-	{
-		Loki.decreaseGrade();
-	}
-	catch (std::exception& e)
-	{
-		std::cout << "Cannot decrement the grade of Loki!" << std::endl;
-		std::cout << "Exception: " << e.what() << std::endl;
-	}
+    std::cout << "Creating a form with grade to sign 0\n";
+    try
+    {
+        Form    f("Contract_A1", 0, 50);
+    }
+    catch (std::exception &e)
+    {
+        std::cout << "Exception: " << e.what() << "\n";
+    }
+    
+    std::cout << "\nCreating a form with grade to execute 0\n";
+    try
+    {
+        Form    f("Contract_A2", 75, 0);
+    }
+    catch (std::exception &e)
+    {
+        std::cout << "Exception: " << e.what() << "\n";
+    }
+    
+    std::cout << "\nCreating a form with grade to execute 151\n";
+    try
+    {
+        Form    f("Contract_A3", 25, 151);
+    }
+    catch (std::exception &e)
+    {
+        std::cout << "Exception: " << e.what() << "\n";
+    }
+    
+    std::cout << "\nCreating a form with grade to sign 151\n";
+    try
+    {
+        Form    f("Contract_A4", 151, 100);
+    }
+    catch (std::exception &e)
+    {
+        std::cout << "Exception: " << e.what() << "\n";
+    }
+    
+    std::cout << "\nSigning a form with appropriate bureaucrat\n\n";
+    try
+    {
+        Bureaucrat  Zeus("Zeus", 5);
+        Form        f("Contract_B1", 100, 120);
+        std::cout << f << "\n";
+        Zeus.signForm(f);
+        std::cout << f << "\n";
+    }
+    catch (std::exception &e)
+    {
+        std::cout << e.what() << "\n";
+    }
+    std::cout << "\n";
+    
+    std::cout << "\nSigning a form with inappropriate bureaucrat\n\n";
+    try
+    {
+        Bureaucrat  Hermes("Hermes", 50);
+        Form        f("Contract_B2", 10, 20);
+        std::cout << f << "\n";
+        Hermes.signForm(f);
+        std::cout << f << "\n";
+    }
+    catch (std::exception &e)
+    {
+        std::cout << e.what() << "\n";
+    }
+    
+    return 0;
 }

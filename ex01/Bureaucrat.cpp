@@ -6,7 +6,7 @@
 /*   By: yyaniv <yyaniv@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/27 12:47:13 by yyaniv            #+#    #+#             */
-/*   Updated: 2025/11/28 16:06:59 by yyaniv           ###   ########.fr       */
+/*   Updated: 2025/12/01 15:08:43 by yyaniv           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,12 @@ void                Bureaucrat::signForm(Form &form)
 {
     try
     {
-        
+        form.beSigned(*this);
+        std::cout << "Bureaucrat " << this->_name << " successfully signed the form " << form.getName() << ".\n";
+    }
+    catch(const std::exception &e)
+    {
+        std::cout << *this << "| " << e.what() << "\n";
     }
 }
 
