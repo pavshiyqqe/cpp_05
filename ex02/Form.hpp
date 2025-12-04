@@ -6,7 +6,7 @@
 /*   By: yyaniv <yyaniv@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/30 10:49:28 by yyaniv            #+#    #+#             */
-/*   Updated: 2025/12/01 15:54:19 by yyaniv           ###   ########.fr       */
+/*   Updated: 2025/12/04 14:31:46 by yyaniv           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 #include "Bureaucrat.hpp"
 #include <iostream>
 #include <string>
+
+#include <cstdlib>
 
 class Bureaucrat;
 
@@ -35,7 +37,7 @@ class Form
     public:
         Form(const std::string &_name, int _gradetoSign, int _gradeToExecute);
         Form(const Form &other);
-        ~Form();
+        virtual ~Form();
         Form    &operator=(const Form &other);
 
         const std::string   &getName() const;
@@ -52,7 +54,7 @@ class Form
         void                checkExecutability(const Bureaucrat &exc) const;
 
 
-    private:
+    public:
         class GradeTooHighException : public std::exception
         {
             private:

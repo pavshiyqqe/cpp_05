@@ -6,7 +6,7 @@
 /*   By: yyaniv <yyaniv@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/27 12:47:13 by yyaniv            #+#    #+#             */
-/*   Updated: 2025/12/01 15:51:40 by yyaniv           ###   ########.fr       */
+/*   Updated: 2025/12/04 14:22:18 by yyaniv           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ void                Bureaucrat::executeForm(const Form &form)
     try
     {
         form.execute(*this);
-        std::cout << this->_name < " executes form " << form.getName << "\n";
+        std::cout << this->_name << " executes form " << form.getName() << "\n";
     }
     catch (Form::InvalidFormException &exc)
     {

@@ -5,83 +5,101 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: yyaniv <yyaniv@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/29 20:20:17 by yyaniv            #+#    #+#             */
-/*   Updated: 2025/12/01 14:41:30 by yyaniv           ###   ########.fr       */
+/*   Created: 2025/12/04 14:19:25 by yyaniv            #+#    #+#             */
+/*   Updated: 2025/12/04 15:27:49 by yyaniv           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
+#include "ShrubberyCreationForm.hpp"
+#include "RobotomyRequestForm.hpp"
+#include "PresidentialPardonForm.hpp"
+#include <ctime>
+#include <iostream>
 
 int main()
 {
-    std::cout << "Creating a form with grade to sign 0\n";
+    Bureaucrat Zeus("Zeus", 1);
+    Bureaucrat Hera("Hera", 40);
+    Bureaucrat Hades("Hades", 150);
+    Form* document = NULL;
+
+    srand(time(NULL));
+
+    // Attempting to execute an unsigned presidential pardon form
+    std::cout << "Attempting to execute an unsigned presidential pardon form" << std::endl;
     try
     {
-        Form    f("Contract_A1", 0, 50);
+        document = new PresidentialPardonForm("A101");
+        document->execute(Zeus);
     }
     catch (std::exception &e)
     {
-        std::cout << "Exception: " << e.what() << "\n";
+        std::cout << "Exception: " << e.what() << std::endl;
     }
-    
-    std::cout << "\nCreating a form with grade to execute 0\n";
+    if (document)
+    {
+        delete document;
+        document = NULL;
+    }
+
+    // Signing and executing a presidential pardon form
+    std::cout << "\nSigning and executing a presidential pardon form" << std::endl;
     try
     {
-        Form    f("Contract_A2", 75, 0);
+        document = new PresidentialPardonForm("B202");
+        document->beSigned(Zeus);
+        document->execute(Zeus);
     }
     catch (std::exception &e)
     {
-        std::cout << "Exception: " << e.what() << "\n";
+        std::cout << "Exception: " << e.what() << std::endl;
     }
-    
-    std::cout << "\nCreating a form with grade to execute 151\n";
+    if (document)
+    {
+        delete document;
+        document = NULL;
+    }
+
+    //  Executing a robotomy request form with different bureaucrats ===
+    std::cout << "\nExecuting a robotomy request form with different bureaucrats" << std::endl;
     try
     {
-        Form    f("Contract_A3", 25, 151);
+        document = new RobotomyRequestForm("C303");
+        Zeus.signForm(*document);
+        std::cout << std::endl;
+        Hera.executeForm(*document);
+        Hera.executeForm(*document);
+        Hera.executeForm(*document);
     }
     catch (std::exception &e)
     {
-        std::cout << "Exception: " << e.what() << "\n";
+        std::cout << "Exception: " << e.what() << std::endl;
     }
-    
-    std::cout << "\nCreating a form with grade to sign 151\n";
+    if (document)
+    {
+        delete document;
+        document = NULL;
+    }
+
+    // Executing shrubbery creation form with insufficient clearance 
+    std::cout << "\nExecuting shrubbery creation form with insufficient clearance" << std::endl;
     try
     {
-        Form    f("Contract_A4", 151, 100);
+        document = new ShrubberyCreationForm("zxc");
+        Zeus.signForm(*document);
+        Hera.executeForm(*document);
+        Hades.executeForm(*document);
     }
     catch (std::exception &e)
     {
-        std::cout << "Exception: " << e.what() << "\n";
+        std::cout << "Exception: " << e.what() << std::endl;
     }
-    
-    std::cout << "\nSigning a form with appropriate bureaucrat\n\n";
-    try
+    if (document)
     {
-        Bureaucrat  Zeus("Zeus", 5);
-        Form        f("Contract_B1", 100, 120);
-        std::cout << f << "\n";
-        Zeus.signForm(f);
-        std::cout << f << "\n";
+        delete document;
+        document = NULL;
     }
-    catch (std::exception &e)
-    {
-        std::cout << e.what() << "\n";
-    }
-    std::cout << "\n";
-    
-    std::cout << "\nSigning a form with inappropriate bureaucrat\n\n";
-    try
-    {
-        Bureaucrat  Hermes("Hermes", 50);
-        Form        f("Contract_B2", 10, 20);
-        std::cout << f << "\n";
-        Hermes.signForm(f);
-        std::cout << f << "\n";
-    }
-    catch (std::exception &e)
-    {
-        std::cout << e.what() << "\n";
-    }
-    
+
     return 0;
 }
