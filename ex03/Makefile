@@ -6,11 +6,11 @@
 #    By: yyaniv <yyaniv@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/11/26 09:56:02 by yyaniv            #+#    #+#              #
-#    Updated: 2025/12/04 15:31:27 by yyaniv           ###   ########.fr        #
+#    Updated: 2025/12/05 15:52:42 by yyaniv           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = bureaucrat_02
+NAME = intern
 
 SRCS = $(wildcard *.cpp)
 OBJS = $(SRCS:.cpp=.o)

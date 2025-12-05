@@ -6,7 +6,7 @@
 /*   By: yyaniv <yyaniv@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/04 14:19:25 by yyaniv            #+#    #+#             */
-/*   Updated: 2025/12/04 15:31:28 by yyaniv           ###   ########.fr       */
+/*   Updated: 2025/12/05 16:07:34 by yyaniv           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ int main()
 
     srand(time(NULL));
 
-    // Attempting to execute an unsigned presidential pardon form
-    std::cout << "Attempting to execute an unsigned presidential pardon form" << std::endl;
+
+    std::cout << "Attempting to execute an unsigned presidential pardon form\n";
     try
     {
         document = new PresidentialPardonForm("A101");
@@ -43,8 +43,8 @@ int main()
         document = NULL;
     }
 
-    // Signing and executing a presidential pardon form
-    std::cout << "\nSigning and executing a presidential pardon form" << std::endl;
+
+    std::cout << "\nSigning and executing a presidential pardon form\n";
     try
     {
         document = new PresidentialPardonForm("B202");
@@ -53,7 +53,7 @@ int main()
     }
     catch (std::exception &e)
     {
-        std::cout << "Exception: " << e.what() << std::endl;
+        std::cout << "Exception: " << e.what() << "\n";
     }
     if (document)
     {
@@ -61,8 +61,8 @@ int main()
         document = NULL;
     }
 
-    //  Executing a robotomy request form with different bureaucrats ===
-    std::cout << "\nExecuting a robotomy request form with different bureaucrats" << std::endl;
+
+    std::cout << "\nExecuting a robotomy request form with different bureaucrats\n";
     try
     {
         document = new RobotomyRequestForm("C303");
@@ -74,7 +74,7 @@ int main()
     }
     catch (std::exception &e)
     {
-        std::cout << "Exception: " << e.what() << std::endl;
+        std::cout << "Exception: " << e.what() << "\n";
     }
     if (document)
     {
@@ -82,8 +82,8 @@ int main()
         document = NULL;
     }
 
-    // Executing shrubbery creation form with insufficient clearance 
-    std::cout << "\nExecuting shrubbery creation form with insufficient clearance" << std::endl;
+
+    std::cout << "\nExecuting shrubbery creation form with insufficient clearance\n";
     try
     {
         document = new ShrubberyCreationForm("zxc");
@@ -93,7 +93,7 @@ int main()
     }
     catch (std::exception &e)
     {
-        std::cout << "Exception: " << e.what() << std::endl;
+        std::cout << "Exception: " << e.what() << "\n";
     }
     if (document)
     {
